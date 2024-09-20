@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Electron App</title>
+  </head>
+  <body>
+    <h1>Electron with GoLogin & Puppeteer</h1>
+    <button id="startTaskButton">Start GoLogin Task</button>
+
+    <script>
+      const { ipcRenderer } = require("electron");
+
+      document
+        .getElementById("startTaskButton")
+        .addEventListener("click", () => {
+          const data = {
+            token:
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmVhYWRjZGZhYzc0MTZkNzUxYjdmN2YiLCJ0eXBlIjoiZGV2Iiwiand0aWQiOiI2NmVhYjk1NTc5ZTQyNDNkNjA5OGU5MTMifQ.gvXP-AxnBfn5lgTfsETq-XmxnTVcICmRPm5HsvmpJ40",
+            profile_id: "66eaadcefac7416d751b7fdd",
+          };
+
+          // Send event to main process
+          ipcRenderer.send("run-gologin-code", data);
+        });
+    </script>
+  </body>
+</html>
